@@ -40,8 +40,8 @@ const LeftNavigation = () => {
                 </div>
             </div>
             <div className="space-y-5 py-7">
-                {news.slice(0, 3).map((newsItem) => (
-                    <LeftSingleNews key={newsItem.id} newsItem={newsItem} />
+                {news.slice(0, 3).map((newsItem, idx) => (
+                    <LeftSingleNews key={idx} newsItem={newsItem} />
                 ))}
             </div>
         </div>

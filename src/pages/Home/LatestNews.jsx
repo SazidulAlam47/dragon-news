@@ -16,8 +16,8 @@ const LatestNews = () => {
                 </div>
                 <div className="text-lg font-semibold leading-loose text-gray-700 w-full">
                     <Marquee autoFill={true} pauseOnHover={true} speed={100}>
-                        {news?.slice(0, 3).map((newsItem) => (
-                            <p key={newsItem.id} className="px-3">
+                        {news?.slice(0, 3).map((newsItem, idx) => (
+                            <p key={idx} className="px-3">
                                 {newsItem.title}.
                             </p>
                         ))}
