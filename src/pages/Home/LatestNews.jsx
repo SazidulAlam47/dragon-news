@@ -1,16 +1,8 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
+import useData from "../../hooks/useData";
 
 const LatestNews = () => {
-    const [news, setNews] = useState([]);
-
-    useEffect(() => {
-        axios
-            .get("/data/news.json")
-            .then((res) => setNews(res.data))
-            .catch((err) => console.error(err));
-    }, []);
+    const { news } = useData();
 
     return (
         <div className="flex items-start justify-start p-4 bg-gray-100 my-9 overflow-hidden">

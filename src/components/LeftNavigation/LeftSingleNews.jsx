@@ -1,18 +1,10 @@
-import axios from "axios";
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
 import { CiCalendar } from "react-icons/ci";
 import formatDate from "../../utils/formatDate";
+import useData from "../../hooks/useData";
 
 const LeftSingleNews = ({ newsItem }) => {
-    const [categories, setCategories] = useState([]);
-
-    useEffect(() => {
-        axios
-            .get("/data/categories.json")
-            .then((res) => setCategories(res.data))
-            .catch((err) => console.error(err));
-    }, []);
+    const { categories } = useData();
 
     return (
         <div>

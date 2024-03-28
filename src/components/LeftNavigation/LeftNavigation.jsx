@@ -1,8 +1,7 @@
-import axios from "axios";
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import LeftSingleNews from "./LeftSingleNews";
+import useData from "../../hooks/useData";
 
 const SingleNav = ({ pageTitle, path }) => {
     return (
@@ -20,19 +19,7 @@ const SingleNav = ({ pageTitle, path }) => {
 };
 
 const LeftNavigation = () => {
-    const [categories, setCategories] = useState([]);
-    const [news, setNews] = useState([]);
-
-    useEffect(() => {
-        axios
-            .get("/data/categories.json")
-            .then((res) => setCategories(res.data))
-            .catch((err) => console.error(err));
-        axios
-            .get("/data/news.json")
-            .then((res) => setNews(res.data))
-            .catch((err) => console.error(err));
-    }, []);
+    const { news, categories } = useData();
 
     return (
         <div>
