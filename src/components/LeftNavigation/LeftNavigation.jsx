@@ -32,7 +32,7 @@ const LeftNavigation = () => {
                             pageTitle={category.name}
                             path={
                                 category.id == 0
-                                    ? "/"
+                                    ? `/`
                                     : `/category/${category.id}`
                             }
                         />
@@ -40,7 +40,7 @@ const LeftNavigation = () => {
                 </div>
             </div>
             <div className="space-y-5 py-7">
-                {news.slice(0, 3).map((newsItem, idx) => (
+                {news.map((newsItem, idx) => (
                     <LeftSingleNews key={idx} newsItem={newsItem} />
                 ))}
             </div>

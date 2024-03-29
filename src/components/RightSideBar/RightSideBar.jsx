@@ -53,11 +53,11 @@ const RightSideBar = () => {
                     <span>Instagram</span>
                 </a>
             </div>
-            <div className="bg-dark7 p-4">
+            <div className="bg-dark7 p-4 flex flex-col">
                 <h2 className="text-xl font-semibold pb-5">Q-Zone</h2>
-                <img src="/assets/qZone1.png" alt="" />
-                <img src="/assets/qZone2.png" alt="" />
-                <img src="/assets/qZone3.png" alt="" />
+                <img src="/assets/qZone1.png" alt="qZone1" />
+                <img src="/assets/qZone2.png" alt="qZone2" />
+                <img src="/assets/qZone3.png" alt="qZone3" />
             </div>
             <div
                 className=" px-8 py-16"
