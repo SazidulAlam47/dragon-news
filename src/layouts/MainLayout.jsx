@@ -13,7 +13,9 @@ const MainLayout = () => {
         <div
             className={
                 location.pathname === "/register" ||
-                (location.pathname === "/login" && "bg-dark7")
+                location.pathname === "/login"
+                    ? "bg-dark7"
+                    : "bg-white"
             }
         >
             <div className="font-poppins overflow-hidden container mx-auto px-3 md:px-6">

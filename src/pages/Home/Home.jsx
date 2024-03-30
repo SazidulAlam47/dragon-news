@@ -36,8 +36,11 @@ const Home = () => {
             <h2 className="text-xl font-semibold pb-5">Dragon News Home</h2>
             {filterNews.length ? (
                 <div className="space-y-4">
-                    {filterNews?.map((newsItem, idx) => (
-                        <HomeSingleNews key={idx} newsItem={newsItem} />
+                    {filterNews?.map((newsItem) => (
+                        <HomeSingleNews
+                            key={newsItem._id}
+                            newsItem={newsItem}
+                        />
                     ))}
                 </div>
             ) : (

@@ -1,5 +1,6 @@
 import Marquee from "react-fast-marquee";
 import useData from "../../hooks/useData";
+import { Link } from "react-router-dom";
 
 const LatestNews = () => {
     const { news } = useData();
@@ -12,10 +13,14 @@ const LatestNews = () => {
                 </p>
                 <div className="p-1 text-lg font-semibold overflow-hidden">
                     <Marquee autoFill={true} pauseOnHover={true} speed={100}>
-                        {news?.slice(0, 3).map((newsItem, idx) => (
-                            <p key={idx} className="px-3">
+                        {news?.slice(0, 3).map((newsItem) => (
+                            <Link
+                                to={`/news/${newsItem._id}`}
+                                key={newsItem._id}
+                                className="px-3"
+                            >
                                 {newsItem.title}.
-                            </p>
+                            </Link>
                         ))}
                     </Marquee>
                 </div>
