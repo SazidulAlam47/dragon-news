@@ -40,9 +40,11 @@ const LeftNavigation = () => {
                 </div>
             </div>
             <div className="space-y-5 py-7">
-                {news.map((newsItem, idx) => (
-                    <LeftSingleNews key={idx} newsItem={newsItem} />
-                ))}
+                {news
+                    .filter((newsItem) => newsItem.category_id == 4) // Sports
+                    .map((newsItem, idx) => (
+                        <LeftSingleNews key={idx} newsItem={newsItem} />
+                    ))}
             </div>
         </div>
     );
