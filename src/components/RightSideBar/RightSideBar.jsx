@@ -23,33 +23,33 @@ const RightSideBar = () => {
             <div>
                 <h2 className="text-xl font-semibold pb-5">Find Us On</h2>
                 <a
-                    href="#"
+                    href="https://www.facebook.com/DailyStarNews/"
                     target="_blank"
                     className="flex gap-2 border items-center p-4 border-[#E7E7E7] rounded-t-lg font-medium text-gray-light"
                 >
-                    <div className="bg-[#f3f3f3] h-8 w-8 rounded-full flex justify-center items-center text-[#3b599c]">
+                    <span className="bg-[#f3f3f3] h-8 w-8 rounded-full flex justify-center items-center text-[#3b599c]">
                         <FaFacebookF />
-                    </div>
+                    </span>
                     <span>Facebook</span>
                 </a>
                 <a
-                    href="#"
+                    href="https://twitter.com/dailystarnews"
                     target="_blank"
                     className="flex gap-2 border items-center p-4 border-x-[#E7E7E7] font-medium text-gray-light"
                 >
-                    <div className="bg-[#f3f3f3] h-8 w-8 rounded-full flex justify-center items-center text-[#58a8de]">
+                    <span className="bg-[#f3f3f3] h-8 w-8 rounded-full flex justify-center items-center text-[#58a8de]">
                         <FaTwitter />
-                    </div>
+                    </span>
                     <span>Twitter</span>
                 </a>
                 <a
-                    href="#"
+                    href="https://www.instagram.com/dailystar_bd/"
                     target="_blank"
                     className="flex gap-2 border items-center p-4 border-[#E7E7E7] rounded-b-lg font-medium text-gray-light"
                 >
-                    <div className="bg-[#f3f3f3] h-8 w-8 rounded-full flex justify-center items-center text-[#e65d6e]">
+                    <span className="bg-[#f3f3f3] h-8 w-8 rounded-full flex justify-center items-center text-[#e65d6e]">
                         <FaInstagram />
-                    </div>
+                    </span>
                     <span>Instagram</span>
                 </a>
             </div>
