@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 
 const Login = () => {
     return (
-        <div>
+        <div className="col-span-4">
             <Helmet>
                 <title>Dragon News | Login</title>
             </Helmet>

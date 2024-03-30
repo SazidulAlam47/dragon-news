@@ -63,7 +63,7 @@ const Navbar = () => {
     }, [isMobileMenuOpen]); // Empty dependency array ensures that effect runs only once
 
     return (
-        <div className="navbar bg-base-100 mb-16">
+        <div className="navbar bg-base-100 pt-5">
             <div className="navbar-start">
                 <div className="dropdown" ref={dropdownRef}>
                     <div

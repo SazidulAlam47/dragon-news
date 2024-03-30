@@ -5,7 +5,7 @@ const LatestNews = () => {
     const { news } = useData();
 
     return (
-        <div className="flex items-start justify-start p-4 bg-gray-100 my-9 overflow-hidden">
+        <div className="flex items-start justify-start pt-4 bg-gray-100 my-9 overflow-hidden">
             <div className="flex gap-1 items-center justify-end">
                 <div className="w-28">
                     <div className="flex items-center justify-center flex-1  py-2 px-6 bg-red-pink">
