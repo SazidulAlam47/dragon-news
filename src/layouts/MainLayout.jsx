@@ -1,6 +1,6 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Header from "../components/Header/Header";
-import LatestNews from "../pages/Home/LatestNews";
+import LatestNews from "../components/Marquee/Marquee";
 import Navbar from "../components/Navbar/Navbar";
 import LeftNavigation from "../components/LeftNavigation/LeftNavigation";
 import RightSideBar from "../components/RightSideBar/RightSideBar";
