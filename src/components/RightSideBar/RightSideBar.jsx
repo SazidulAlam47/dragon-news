@@ -1,25 +1,10 @@
-import {
-    FaGoogle,
-    FaGithub,
-    FaInstagram,
-    FaTwitter,
-    FaFacebookF,
-} from "react-icons/fa";
+import { FaInstagram, FaTwitter, FaFacebookF } from "react-icons/fa";
+import SocialLogin from "./SocialLogin";
 
 const RightSideBar = () => {
     return (
-        <div className="space-y-7">
-            <div className="space-y-3">
-                <h2 className="text-xl font-semibold pb-5">Login With</h2>
-                <button className="btn btn-block flex flex-nowrap text-[#3b68cf] border-[#3b68cf] font-medium bg-white">
-                    <FaGoogle />
-                    <span>Login with Google</span>
-                </button>
-                <button className="btn btn-block flex flex-nowrap text-gray-700 border-gray-700 font-medium bg-white">
-                    <FaGithub />
-                    <span>Login with GitHub</span>
-                </button>
-            </div>
+        <div className="space-y-7 md:w-full">
+            <SocialLogin />
             <div>
                 <h2 className="text-xl font-semibold pb-5">Find Us On</h2>
                 <a
@@ -74,9 +59,13 @@ const RightSideBar = () => {
                             Discover thousands of options, easy to customize
                             layouts, one-click to import demo and much more.
                         </p>
-                        <button className="btn rounded-none bg-red-pink text-white border-none hover:bg-red-light">
+                        <a
+                            href="https://github.com/SazidulAlam47/dragon-news"
+                            target="_blank"
+                            className="btn rounded-none bg-red-pink text-white border-none hover:bg-red-light"
+                        >
                             Learn More
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>

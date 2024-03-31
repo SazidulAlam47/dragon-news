@@ -6,6 +6,7 @@ import MainLayout from "../layouts/MainLayout";
 import About from "../pages/About/About";
 import Career from "../pages/Career/Career";
 import NewsDetails from "../pages/NewsDetails/NewsDetails";
+import ForgotPass from "../pages/Auth/ForgotPass";
 
 const router = createBrowserRouter([
     {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
             {
                 path: "/login",
                 element: <Login />,
+            },
+            {
+                path: "/forgot-password",
+                element: <ForgotPass />,
             },
             {
                 path: "/register",
