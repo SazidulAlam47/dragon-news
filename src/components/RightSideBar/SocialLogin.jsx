@@ -3,7 +3,6 @@ import { FaGoogle, FaGithub } from "react-icons/fa";
 import formatFirebaseError from "../../utils/formatFirebaseError";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Bounce, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const SocialLogin = () => {
     const { googleLogin, githubLogin } = useContext(AuthContext);

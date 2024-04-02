@@ -83,13 +83,13 @@ const Register = () => {
             <Helmet>
                 <title>Dragon News | Register</title>
             </Helmet>
-            <div className="bg-white w-11/12 md:w-4/6 lg:w-1/2 mx-auto p-16">
-                <h2 className="text-3xl font-semibold text-center pb-12 border-b border-dark6 text-gray-dark">
+            <div className="bg-white w-11/12 md:w-4/6 lg:w-1/2 mx-auto px-1 py-8 sm:px-8 xl:px-16 lg:py-16">
+                <h2 className="text-3xl font-semibold text-center pb-6 lg:pb-12 border-b border-dark6 text-gray-dark">
                     Register your account
                 </h2>
                 <form
                     onSubmit={handleRegister}
-                    className="px-6 py-12 space-y-5"
+                    className="px-4 md:px-6 py-6 md:py-12 space-y-5"
                 >
                     <div className="form-control">
                         <label className="label">
@@ -156,7 +156,7 @@ const Register = () => {
                         </div>
                     </div>
 
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 text-sm sm:text-base">
                         <input
                             type="checkbox"
                             className="checkbox checkbox-sm"

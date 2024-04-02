@@ -6,6 +6,7 @@ import router from "./routes/Routes.jsx";
 import { HelmetProvider } from "react-helmet-async";
 import AuthProvider from "./Provider/AuthProvider.jsx";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>

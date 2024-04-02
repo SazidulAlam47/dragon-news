@@ -47,16 +47,16 @@ const ForgotPass = () => {
             <Helmet>
                 <title>Dragon News | Forgot Password</title>
             </Helmet>
-            <div className="bg-white w-11/12 md:w-4/6 lg:w-1/2 mx-auto p-16">
+            <div className="bg-white w-11/12 md:w-4/6 lg:w-1/2 mx-auto px-1 py-8 sm:px-8 xl:px-16 lg:py-16">
                 <h2 className="text-3xl font-semibold text-center text-gray-dark pb-2">
                     Forgot Password
                 </h2>
-                <p className="text-center font-normal text-gray-light pb-10 border-b border-dark6">
+                <p className="text-center font-normal text-gray-light pb-6 lg:pb-10 border-b border-dark6">
                     Enter your Email to reset your password
                 </p>
                 <form
                     onSubmit={handelForgotPass}
-                    className="px-6 py-10 space-y-5"
+                    className="px-4 md:px-6 py-6 md:py-12 space-y-5"
                 >
                     <div className="form-control">
                         <label className="label">

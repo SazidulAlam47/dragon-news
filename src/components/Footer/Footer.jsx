@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 const Footer = () => {
     return (
         <footer className="bg-gray-900 mt-7">
-            <div className="footer items-center p-4 text-neutral-content container mx-auto px-3 md:px-6">
-                <aside className="items-center grid-flow-col">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 py-6 sm:py-5 text-white container mx-auto px-3 md:px-6">
+                <aside className="flex flex-col sm:flex-row items-center gap-3">
                     <Link to="/" className="font-oldEng text-lg">
                         The Dragon News
                     </Link>
                     <p className="text-sm"> © 2024 - All right reserved</p>
                 </aside>
-                <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end text-lg">
+                <nav className="flex gap-3 text-lg">
                     <a
                         href="https://www.facebook.com/DailyStarNews/"
                         target="_blank"
