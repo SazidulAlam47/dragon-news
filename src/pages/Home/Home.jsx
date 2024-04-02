@@ -2,14 +2,20 @@ import { useLocation, useParams } from "react-router-dom";
 import useData from "../../hooks/useData";
 import HomeSingleNews from "./HomeSingleNews";
 import { Helmet } from "react-helmet-async";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Home = () => {
     const { news, categories } = useData();
+    const { setClickedLocation } = useContext(AuthContext);
     const { id } = useParams();
     const location = useLocation();
     const [filterNews, setFilterNews] = useState([]);
     const [categoryName, setCategoryName] = useState([]);
+
+    useEffect(() => {
+        setClickedLocation("");
+    }, [setClickedLocation]);
 
     useEffect(() => {
         if (location.pathname === "/") {

@@ -21,6 +21,7 @@ const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 
 const AuthProvider = ({ children }) => {
+    const [clickedLocation, setClickedLocation] = useState("");
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [firebaseError, setFirebaseError] = useState("");
@@ -114,6 +115,8 @@ const AuthProvider = ({ children }) => {
         updateInfo,
         logOut,
         passwordReset,
+        clickedLocation,
+        setClickedLocation,
     };
 
     return (

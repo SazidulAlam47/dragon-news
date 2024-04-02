@@ -1,6 +1,12 @@
+import { useContext, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Career = () => {
+    const { setClickedLocation } = useContext(AuthContext);
+    useEffect(() => {
+        setClickedLocation("");
+    }, [setClickedLocation]);
     return (
         <div className="col-span-3 p-8">
             <Helmet>

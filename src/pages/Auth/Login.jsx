@@ -9,11 +9,16 @@ import { IoEye, IoEyeOff } from "react-icons/io5";
 const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const { signInWithPassword, firebaseError } = useContext(AuthContext);
+    const {
+        signInWithPassword,
+        firebaseError,
+        clickedLocation,
+        setClickedLocation,
+    } = useContext(AuthContext);
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
-    console.log(location);
+    console.log("clickedLocation ", clickedLocation);
 
     useEffect(() => {
         if (firebaseError) {
@@ -44,11 +49,17 @@ const Login = () => {
                 if (!result.user.emailVerified) {
                     setError("Please verify your email");
                 } else {
-                    location.state ? navigate(location.state) : navigate("/");
+                    location.state
+                        ? navigate(location.state)
+                        : clickedLocation
+                        ? navigate(clickedLocation)
+                        : navigate("/");
+
+                    setClickedLocation("");
 
                     toast.success("Login Successful", {
                         position: "top-right",
-                        autoClose: 200,
+                        autoClose: 3000,
                         hideProgressBar: true,
                         closeOnClick: true,
                         pauseOnHover: true,
@@ -113,7 +124,6 @@ const Login = () => {
                         </div>
                         <label className="label">
                             <Link
-                                state={location.state}
                                 to="/forgot-password"
                                 className="label-text-alt link link-hover text-sm text-gray-light"
                             >
@@ -137,6 +147,7 @@ const Login = () => {
                 <p className="text-center font-semibold text-gray-light">
                     Don&apos;t Have An Account ?{" "}
                     <Link
+                        onClick={() => setClickedLocation(location.state)}
                         to="/register"
                         className="bg-gradient-to-r from-[#F75B5F] to-[#FF8C47] inline-block text-transparent bg-clip-text"
                     >
