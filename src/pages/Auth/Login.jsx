@@ -1,16 +1,19 @@
 import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Bounce, toast } from "react-toastify";
 import { AuthContext } from "../../Provider/AuthProvider";
 import formatFirebaseError from "../../utils/formatFirebaseError";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 
 const Login = () => {
+    const location = useLocation();
     const navigate = useNavigate();
     const { signInWithPassword, firebaseError } = useContext(AuthContext);
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+
+    console.log(location);
 
     useEffect(() => {
         if (firebaseError) {
@@ -41,17 +44,17 @@ const Login = () => {
                 if (!result.user.emailVerified) {
                     setError("Please verify your email");
                 } else {
-                    navigate("/");
+                    location.state ? navigate(location.state) : navigate("/");
 
                     toast.success("Login Successful", {
-                        position: "top-center",
+                        position: "top-right",
                         autoClose: 200,
                         hideProgressBar: true,
                         closeOnClick: true,
                         pauseOnHover: true,
                         draggable: true,
                         progress: undefined,
-                        theme: "light",
+                        theme: "colored",
                         transition: Bounce,
                     });
                 }
@@ -110,6 +113,7 @@ const Login = () => {
                         </div>
                         <label className="label">
                             <Link
+                                state={location.state}
                                 to="/forgot-password"
                                 className="label-text-alt link link-hover text-sm text-gray-light"
                             >

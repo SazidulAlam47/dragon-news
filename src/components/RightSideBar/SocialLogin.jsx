@@ -14,14 +14,14 @@ const SocialLogin = () => {
                 console.log(result.user);
 
                 toast.success("Login Successful", {
-                    position: "top-center",
+                    position: "top-right",
                     autoClose: 3000,
                     hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
-                    theme: "light",
+                    theme: "colored",
                     transition: Bounce,
                 });
             })
@@ -48,14 +48,14 @@ const SocialLogin = () => {
                 console.log(result.user);
 
                 toast.success("Login Successful", {
-                    position: "top-center",
+                    position: "top-right",
                     autoClose: 3000,
                     hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
-                    theme: "light",
+                    theme: "colored",
                     transition: Bounce,
                 });
             })

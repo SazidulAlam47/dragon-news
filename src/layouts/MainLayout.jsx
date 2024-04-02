@@ -28,6 +28,7 @@ const MainLayout = () => {
                     location.pathname === "/career" ||
                     /\/category\/\d/.test(location.pathname)) && <LatestNews />}
                 {!/\/news\/\S+/.test(location.pathname) && <Navbar />}
+                {/* <Navbar /> */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-y-6 md:gap-x-6 mt-16 md:w-full">
                     {(location.pathname === "/" ||
                         /\/category\/\d/.test(location.pathname)) && (
