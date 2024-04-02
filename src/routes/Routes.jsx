@@ -8,11 +8,13 @@ import Career from "../pages/Career/Career";
 import NewsDetails from "../pages/NewsDetails/NewsDetails";
 import ForgotPass from "../pages/Auth/ForgotPass";
 import PrivetRoute from "./PrivetRoute";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: "/",
