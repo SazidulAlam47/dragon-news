@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 import { AuthContext } from "../Provider/AuthProvider";
+import { Bounce, toast } from "react-toastify";
 
 const PrivetRoute = ({ children }) => {
     const location = useLocation();
@@ -30,6 +31,18 @@ const PrivetRoute = ({ children }) => {
     if (user) {
         return children;
     }
+
+    toast.warn("You must login to view this page", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+    });
 
     return <Navigate state={location.pathname} to="/login"></Navigate>;
 };
