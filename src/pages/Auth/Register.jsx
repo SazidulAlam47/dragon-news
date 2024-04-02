@@ -7,6 +7,16 @@ const Register = () => {
         document.getElementById("TermsAndConditions").showModal();
     };
 
+    const handelRegister = (e) => {
+        e.preventDefault();
+        const form = new FormData(e.currentTarget);
+        const name = form.get("name");
+        const photoURL = form.get("photoURL");
+        const email = form.get("email");
+        const password = form.get("password");
+        console.log({ name, photoURL, email, password });
+    };
+
     return (
         <div className="col-span-4">
             <Helmet>
@@ -16,7 +26,10 @@ const Register = () => {
                 <h2 className="text-3xl font-semibold text-center pb-12 border-b border-dark6 text-gray-dark">
                     Register your account
                 </h2>
-                <form className="px-6 py-12 space-y-5">
+                <form
+                    onSubmit={handelRegister}
+                    className="px-6 py-12 space-y-5"
+                >
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text font-semibold text-lg text-gray-dark">
@@ -25,6 +38,7 @@ const Register = () => {
                         </label>
                         <input
                             type="text"
+                            name="name"
                             placeholder="Enter your name"
                             className="input rounded-none bg-dark7 placeholder:font-normal placeholder:text-base h-14"
                         />
@@ -37,6 +51,7 @@ const Register = () => {
                         </label>
                         <input
                             type="text"
+                            name="photoURL"
                             placeholder="Enter your photo URL here"
                             className="input rounded-none bg-dark7 placeholder:font-normal placeholder:text-base h-14"
                         />
@@ -49,6 +64,7 @@ const Register = () => {
                         </label>
                         <input
                             type="text"
+                            name="email"
                             placeholder="Enter your email address"
                             className="input rounded-none bg-dark7 placeholder:font-normal placeholder:text-base h-14"
                         />
@@ -61,6 +77,7 @@ const Register = () => {
                         </label>
                         <input
                             type="password"
+                            name="password"
                             placeholder="password"
                             className="input rounded-none bg-dark7 placeholder:font-normal placeholder:text-base h-14"
                         />

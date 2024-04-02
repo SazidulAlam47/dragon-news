@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import userDefaultPicture from "/assets/user.png";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const SingleNav = ({ pageTitle, path, setIsMobileMenuOpen }) => {
     return (
@@ -19,7 +20,17 @@ const SingleNav = ({ pageTitle, path, setIsMobileMenuOpen }) => {
 
 const Navbar = () => {
     const dropdownRef = useRef(null);
+    const { user, logOut } = useContext(AuthContext);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+                console.log("SignOut successful");
+            })
+            .catch((err) => console.error(err));
+    };
+
     const navLinks = (
         <>
             <SingleNav
@@ -40,27 +51,23 @@ const Navbar = () => {
         </>
     );
 
+    // handle outside clicks
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (
                 dropdownRef.current &&
                 !dropdownRef.current.contains(event.target)
             ) {
-                // Click happened outside the dropdown
                 setIsMobileMenuOpen(false);
             }
         };
-
-        // Bind the event listener when isMobileMenuOpen is true
         if (isMobileMenuOpen) {
             document.addEventListener("click", handleClickOutside);
         }
-
-        // Unbind the event listener on cleanup
         return () => {
             document.removeEventListener("click", handleClickOutside);
         };
-    }, [isMobileMenuOpen]); // Empty dependency array ensures that effect runs only once
+    }, [isMobileMenuOpen]);
 
     return (
         <div className="navbar pt-5">
@@ -109,17 +116,32 @@ const Navbar = () => {
                     <div className="w-10 rounded-full">
                         <img
                             alt="Tailwind CSS Navbar component"
-                            src={userDefaultPicture}
+                            src={
+                                user
+                                    ? user.photoURL
+                                        ? user.photoURL
+                                        : userDefaultPicture
+                                    : userDefaultPicture
+                            }
                         />
                     </div>
                 </div>
-
-                <Link
-                    to="/login"
-                    className="btn rounded-none bg-gray-dark hover:bg-gray-light text-base sm:text-xl px-5 py-1 sm:px-8 sm:py-2 text-white font-semibold"
-                >
-                    Login
-                </Link>
+                {user ? (
+                    <button
+                        onClick={handleLogOut}
+                        to="/login"
+                        className="btn rounded-none bg-gray-dark hover:bg-gray-light text-base sm:text-xl px-5 py-1 sm:px-8 sm:py-2 text-white font-semibold"
+                    >
+                        Logout
+                    </button>
+                ) : (
+                    <Link
+                        to="/login"
+                        className="btn rounded-none bg-gray-dark hover:bg-gray-light text-base sm:text-xl px-5 py-1 sm:px-8 sm:py-2 text-white font-semibold"
+                    >
+                        Login
+                    </Link>
+                )}
             </div>
         </div>
     );

@@ -1,10 +1,13 @@
 import { FaInstagram, FaTwitter, FaFacebookF } from "react-icons/fa";
 import SocialLogin from "./SocialLogin";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const RightSideBar = () => {
+    const { user } = useContext(AuthContext);
     return (
         <div className="space-y-7 md:w-full">
-            <SocialLogin />
+            {!user && <SocialLogin />}
             <div>
                 <h2 className="text-xl font-semibold pb-5">Find Us On</h2>
                 <a

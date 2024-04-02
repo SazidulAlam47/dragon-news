@@ -2,6 +2,14 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+    const handelLogin = (e) => {
+        e.preventDefault();
+        const form = new FormData(e.currentTarget);
+        const email = form.get("email");
+        const password = form.get("password");
+        console.log({ email, password });
+    };
+
     return (
         <div className="col-span-4 pb-10">
             <Helmet>
@@ -11,7 +19,7 @@ const Login = () => {
                 <h2 className="text-3xl font-semibold text-center pb-12 border-b border-dark6 text-gray-dark">
                     Login your account
                 </h2>
-                <form className="px-6 py-12 space-y-5">
+                <form onSubmit={handelLogin} className="px-6 py-12 space-y-5">
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text font-semibold text-lg text-gray-dark">
@@ -20,6 +28,7 @@ const Login = () => {
                         </label>
                         <input
                             type="text"
+                            name="email"
                             placeholder="Enter your email address"
                             className="input rounded-none bg-dark7 placeholder:font-normal placeholder:text-base h-14"
                             required
@@ -27,12 +36,13 @@ const Login = () => {
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text font-semibold text-lg text-gray-dark ">
+                            <span className="label-text font-semibold text-lg text-gray-dark">
                                 Password
                             </span>
                         </label>
                         <input
                             type="password"
+                            name="password"
                             placeholder="password"
                             className="input rounded-none bg-dark7 placeholder:font-normal placeholder:text-base h-14"
                             required
