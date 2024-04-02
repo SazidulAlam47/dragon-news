@@ -8,7 +8,7 @@ const About = () => {
         setClickedLocation("");
     }, [setClickedLocation]);
     return (
-        <div className="col-span-3 p-8">
+        <div className="col-span-3 px-2 py-4 sm:p-8">
             <Helmet>
                 <title>Dragon News | About</title>
             </Helmet>

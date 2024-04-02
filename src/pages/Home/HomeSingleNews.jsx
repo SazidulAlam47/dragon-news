@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const HomeSingleNews = ({ newsItem }) => {
     return (
         <div>
-            <div className="bg-dark7 flex justify-between items-center p-5 rounded-t-lg">
+            <div className="bg-dark7 flex justify-between items-center px-3 py-5 sm:p-5 rounded-t-lg">
                 <div className="flex items-center gap-3">
                     <div>
                         <img
@@ -34,7 +34,7 @@ const HomeSingleNews = ({ newsItem }) => {
                 </div>
             </div>
             <Link to={`/news/${newsItem._id}`}>
-                <div className="border border-dark7 py-4 px-5 rounded-b-lg">
+                <div className="border border-dark7 py-4 px-3 sm:px-5 rounded-b-lg">
                     <h3 className="text-xl font-bold hover:text-red-pink transition">
                         {newsItem.title}
                     </h3>
