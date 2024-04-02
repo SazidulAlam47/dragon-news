@@ -10,7 +10,7 @@ const NewsDetails = () => {
     return (
         <div className="col-span-3">
             <h3 className="text-xl font-semibold pb-5">Dragon News</h3>
-            <div className="px-2 py-4 sm:p-7 border border-dark6 rounded-lg">
+            <div className="p-3 sm:p-7 border border-dark6 rounded-lg">
                 <div className="mb-5">
                     <img
                         className="w-full"
