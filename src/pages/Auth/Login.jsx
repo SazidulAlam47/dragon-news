@@ -1,13 +1,64 @@
+import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Bounce, toast } from "react-toastify";
+import { AuthContext } from "../../Provider/AuthProvider";
+import formatFirebaseError from "../../utils/formatFirebaseError";
+import { IoEye, IoEyeOff } from "react-icons/io5";
 
 const Login = () => {
+    const navigate = useNavigate();
+    const { signInWithPassword, firebaseError } = useContext(AuthContext);
+    const [error, setError] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+
+    useEffect(() => {
+        if (firebaseError) {
+            setError(formatFirebaseError(firebaseError));
+        }
+    }, [firebaseError]);
+
     const handelLogin = (e) => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
         const email = form.get("email");
         const password = form.get("password");
-        console.log({ email, password });
+
+        if (email === "") {
+            setError("Please fill in the email address");
+            return;
+        } else if (!/\S+@\S+\.\S+/.test(email)) {
+            setError("Invalid email");
+            return;
+        } else if (password === "") {
+            setError("Please fill in the password");
+            return;
+        }
+        setError("");
+        signInWithPassword(email, password)
+            .then((result) => {
+                console.log(result.user);
+                if (!result.user.emailVerified) {
+                    setError("Please verify your email");
+                } else {
+                    navigate("/");
+
+                    toast.success("Login Successful", {
+                        position: "top-center",
+                        autoClose: 200,
+                        hideProgressBar: true,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        transition: Bounce,
+                    });
+                }
+            })
+            .catch((err) => {
+                setError(formatFirebaseError(err));
+            });
     };
 
     return (
@@ -31,22 +82,32 @@ const Login = () => {
                             name="email"
                             placeholder="Enter your email address"
                             className="input rounded-none bg-dark7 placeholder:font-normal placeholder:text-base h-14"
-                            required
                         />
                     </div>
-                    <div className="form-control">
+                    <div>
                         <label className="label">
                             <span className="label-text font-semibold text-lg text-gray-dark">
                                 Password
                             </span>
                         </label>
-                        <input
-                            type="password"
-                            name="password"
-                            placeholder="password"
-                            className="input rounded-none bg-dark7 placeholder:font-normal placeholder:text-base h-14"
-                            required
-                        />
+                        <div className="form-control relative">
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                name="password"
+                                placeholder="password"
+                                className="input rounded-none bg-dark7 placeholder:font-normal placeholder:text-base h-14"
+                            />
+                            <span
+                                className="cursor-pointer absolute right-4 top-5"
+                                onClick={() => setShowPassword(!showPassword)}
+                            >
+                                {showPassword ? (
+                                    <IoEyeOff className="w-5 h-5" />
+                                ) : (
+                                    <IoEye className="w-5 h-5" />
+                                )}
+                            </span>
+                        </div>
                         <label className="label">
                             <Link
                                 to="/forgot-password"
@@ -56,10 +117,17 @@ const Login = () => {
                             </Link>
                         </label>
                     </div>
-                    <div className="form-control mt-6">
-                        <button className="btn bg-gray-dark hover:bg-gray-light text-white rounded-none font-semibold text-xl h-14">
-                            Login
-                        </button>
+                    <div>
+                        <div className="form-control mt-6">
+                            <button className="btn bg-gray-dark hover:bg-gray-light text-white rounded-none font-semibold text-xl h-14">
+                                Login
+                            </button>
+                        </div>
+                        {error && (
+                            <div>
+                                <p className="text-red-600 pt-3">{error}</p>
+                            </div>
+                        )}
                     </div>
                 </form>
                 <p className="text-center font-semibold text-gray-light">

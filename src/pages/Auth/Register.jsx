@@ -1,20 +1,81 @@
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TermsAndConditions from "./TermsAndConditions";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
+import formatFirebaseError from "../../utils/formatFirebaseError";
+import { IoEye, IoEyeOff } from "react-icons/io5";
 
 const Register = () => {
-    const handelTerms = () => {
-        document.getElementById("TermsAndConditions").showModal();
-    };
+    const navigate = useNavigate();
+    const [error, setError] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+    const { createUser, updateInfo } = useContext(AuthContext);
 
-    const handelRegister = (e) => {
+    const handleRegister = (e) => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
         const name = form.get("name");
         const photoURL = form.get("photoURL");
         const email = form.get("email");
         const password = form.get("password");
-        console.log({ name, photoURL, email, password });
+        const agree = Boolean(form.get("agree"));
+
+        if (name === "") {
+            setError("Please enter your name");
+            return;
+        } else if (email === "") {
+            setError("Please enter your email address.");
+            return;
+        } else if (!/\S+@\S+\.\S+/.test(email)) {
+            setError("Invalid email");
+            return;
+        } else if (password === "") {
+            setError("Please fill in the password");
+            return;
+        } else if (password.length < 6) {
+            setError("Password must be at least 6 characters long");
+            return;
+        } else if (!/[a-z]/.test(password) && !/[A-Z]/.test(password)) {
+            setError("Password must contain at least one letter");
+            return;
+        } else if (!/[a-z]/.test(password)) {
+            setError("Password must contain at least one lowercase letter");
+            return;
+        } else if (!/[A-Z]/.test(password)) {
+            setError("Password must contain at least one uppercase letter");
+            return;
+        } else if (!/[0-9]/.test(password)) {
+            setError("Password must contain at least one number");
+            return;
+        } else if (
+            !/(?=.*[~`!@#$%^&*()--+={}[\]|\\:;"'<>,.?/_₹]).*$/.test(password)
+        ) {
+            setError("Password must contain at least one special character");
+            return;
+        } else if (!agree) {
+            setError("You must agree to the terms and conditions");
+            return;
+        }
+        setError(""); // clear the error message
+        createUser(email, password)
+            .then((result) => {
+                const profile = {
+                    displayName: name,
+                    photoURL: photoURL,
+                };
+                updateInfo(result.user, profile)
+                    .then(() => {
+                        console.log("profile updated", result.user);
+                        navigate("/login");
+                    })
+                    .catch((error) => {
+                        console.error(error.message);
+                    });
+            })
+            .catch((err) => {
+                setError(formatFirebaseError(err));
+            });
     };
 
     return (
@@ -27,7 +88,7 @@ const Register = () => {
                     Register your account
                 </h2>
                 <form
-                    onSubmit={handelRegister}
+                    onSubmit={handleRegister}
                     className="px-6 py-12 space-y-5"
                 >
                     <div className="form-control">
@@ -69,19 +130,32 @@ const Register = () => {
                             className="input rounded-none bg-dark7 placeholder:font-normal placeholder:text-base h-14"
                         />
                     </div>
-                    <div className="form-control">
+                    <div>
                         <label className="label">
                             <span className="label-text font-semibold text-lg text-gray-dark ">
                                 Password
                             </span>
                         </label>
-                        <input
-                            type="password"
-                            name="password"
-                            placeholder="password"
-                            className="input rounded-none bg-dark7 placeholder:font-normal placeholder:text-base h-14"
-                        />
+                        <div className="form-control relative">
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                name="password"
+                                placeholder="password"
+                                className="input rounded-none bg-dark7 placeholder:font-normal placeholder:text-base h-14"
+                            />
+                            <span
+                                className="absolute cursor-pointer right-4 top-5"
+                                onClick={() => setShowPassword(!showPassword)}
+                            >
+                                {showPassword ? (
+                                    <IoEyeOff className="w-5 h-5" />
+                                ) : (
+                                    <IoEye className="w-5 h-5" />
+                                )}
+                            </span>
+                        </div>
                     </div>
+
                     <div className="flex items-center gap-2">
                         <input
                             type="checkbox"
@@ -96,15 +170,22 @@ const Register = () => {
                         </label>
                         <span
                             className="font-semibold cursor-pointer"
-                            onClick={handelTerms}
+                            onClick={() =>
+                                document
+                                    .getElementById("TermsAndConditions")
+                                    .showModal()
+                            }
                         >
                             Term & Conditions
                         </span>
                     </div>
-                    <div className="form-control mt-6">
-                        <button className="btn bg-gray-dark hover:bg-gray-light text-white rounded-none font-semibold text-xl h-14">
-                            Register
-                        </button>
+                    <div>
+                        <div className="form-control mt-6">
+                            <button className="btn bg-gray-dark hover:bg-gray-light text-white rounded-none font-semibold text-xl h-14">
+                                Register
+                            </button>
+                        </div>
+                        {error && <p className="text-red-600 pt-2">{error}</p>}
                     </div>
                 </form>
                 <p className="text-center font-semibold text-gray-light">

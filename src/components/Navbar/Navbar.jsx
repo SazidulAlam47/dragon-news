@@ -3,6 +3,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import userDefaultPicture from "/assets/user.png";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { Bounce, toast } from "react-toastify";
 
 const SingleNav = ({ pageTitle, path, setIsMobileMenuOpen }) => {
     return (
@@ -27,6 +28,18 @@ const Navbar = () => {
         logOut()
             .then(() => {
                 console.log("SignOut successful");
+
+                toast.success("Logout Successful", {
+                    position: "top-center",
+                    autoClose: 200,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                });
             })
             .catch((err) => console.error(err));
     };

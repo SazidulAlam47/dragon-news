@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import formatFirebaseError from "../../utils/formatFirebaseError";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { Bounce, ToastContainer, toast } from "react-toastify";
+import { Bounce, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const SocialLogin = () => {
@@ -12,6 +12,18 @@ const SocialLogin = () => {
         googleLogin()
             .then((result) => {
                 console.log(result.user);
+
+                toast.success("Login Successful", {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                });
             })
             .catch((err) => {
                 console.log(err.message);
@@ -34,6 +46,18 @@ const SocialLogin = () => {
         githubLogin()
             .then((result) => {
                 console.log(result.user);
+
+                toast.success("Login Successful", {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                });
             })
             .catch((err) => {
                 console.log(err.message);
@@ -70,19 +94,6 @@ const SocialLogin = () => {
                 <FaGithub />
                 <span>Login with GitHub</span>
             </button>
-            <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-                transition:Bounce
-            />
         </div>
     );
 };
