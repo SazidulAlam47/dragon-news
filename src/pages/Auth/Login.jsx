@@ -124,6 +124,9 @@ const Login = () => {
                         </div>
                         <label className="label">
                             <Link
+                                onClick={() =>
+                                    setClickedLocation(location.state)
+                                }
                                 to="/forgot-password"
                                 className="label-text-alt link link-hover text-sm text-gray-light"
                             >
