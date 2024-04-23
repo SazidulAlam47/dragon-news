@@ -10,7 +10,7 @@ const ForgotPass = () => {
     const { passwordReset } = useContext(AuthContext);
     const [error, setError] = useState("");
 
-    const handelForgotPass = (e) => {
+    const handleForgotPass = (e) => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
         const email = form.get("email");
@@ -55,7 +55,7 @@ const ForgotPass = () => {
                     Enter your Email to reset your password
                 </p>
                 <form
-                    onSubmit={handelForgotPass}
+                    onSubmit={handleForgotPass}
                     className="px-4 md:px-6 py-6 md:py-12 space-y-5"
                 >
                     <div className="form-control">

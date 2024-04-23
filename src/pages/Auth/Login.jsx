@@ -26,7 +26,7 @@ const Login = () => {
         }
     }, [firebaseError]);
 
-    const handelLogin = (e) => {
+    const handleLogin = (e) => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
         const email = form.get("email");
@@ -85,7 +85,7 @@ const Login = () => {
                     Login your account
                 </h2>
                 <form
-                    onSubmit={handelLogin}
+                    onSubmit={handleLogin}
                     className="px-4 md:px-6 py-6 md:py-12 space-y-5"
                 >
                     <div className="form-control">
