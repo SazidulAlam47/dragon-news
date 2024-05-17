@@ -35,7 +35,7 @@ const Login = () => {
         if (email === "") {
             setError("Please fill in the email address");
             return;
-        } else if (!/\S+@\S+\.\S+/.test(email)) {
+        } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
             setError("Invalid email");
             return;
         } else if (password === "") {

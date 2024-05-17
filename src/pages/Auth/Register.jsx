@@ -27,7 +27,7 @@ const Register = () => {
         } else if (email === "") {
             setError("Please enter your email address.");
             return;
-        } else if (!/\S+@\S+\.\S+/.test(email)) {
+        } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
             setError("Invalid email");
             return;
         } else if (password === "") {
